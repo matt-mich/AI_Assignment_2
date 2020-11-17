@@ -8,6 +8,7 @@ from variable_config import *
 #import time
 from enum import Enum
 from math import sqrt
+from copy import deepcopy
 #random.seed(99)
 
 # Initialize pygame.
@@ -17,17 +18,6 @@ from math import sqrt
 ABS_PATH = path.dirname(path.realpath(__file__))
 
 
-
-def rand_color(min_brightness=50, max_brightness=150):
-    if min_brightness < 0:
-        min_brightness = 0
-    if max_brightness > 255:
-        max_brightness = 255
-    red = random.randint(min_brightness,max_brightness)
-    green = random.randint(min_brightness,max_brightness)
-    blue = random.randint(min_brightness,max_brightness)
-
-    return pg.Color(red,green,blue)
 
 def fast_dist(x1,y1,x2,y2):
     return np.linalg.norm(np.array((x1,y1))-np.array((x2,y2)))
@@ -62,25 +52,11 @@ def dir2offset(direction):
 
 # A class that allows for the saving and restoring of the game.
 class GameState():
-    def __init__(self,game_grid):
-        self.player_loc_x = game_grid.player.tile.x
-        self.player_loc_y = game_grid.player.tile.y
-        self.player_energy = game_grid.player.energy
-        self.player_food_eaten = game_grid.player.food_eaten
-        self.player_score = game_grid.player.score
+    def __init__(self, game_manager):
+        self.game_manager = game_manager.deepcopy()
 
-        self.foods_loc = []
-        for tile in game_grid.occupied_spaces:
-            if tile.type == "Food":
-                self.foods_loc.append([tile.x,tile.y])
-
-    # Restore a player object from the game state
-    def restorePlayer(self):
-        player = Player(self.player_loc_x, self.player_loc_y)
-        player.energy = self.player_energy
-        player.food_eaten = self.player_food_eaten
-        player.score = self.player_score
-        return player
+    def restore(self, game_manager):
+        game_manager = self.game_manager
 
 # class SensoryMatrix:
 class GameObject:
@@ -342,6 +318,9 @@ class AgentSense:
         self.sight_rects = []
         self.smell_rects = []
 
+
+        self.type = "neutral"
+        
         for i in range(4):
             sight_rect = pg.Rect(
                             10 + 60 * i,
@@ -430,7 +409,8 @@ class AgentSense:
                 if grid.checkValidTile(x_new,y_new):
                     for agent in agents:
                         if agent.id != self.id:
-                            self.creature_smell[grid_loc_y,grid_loc_x] += (0.5/(fast_dist(x_new,y_new,agent.x,agent.y)+1))*255
+                            if not (self.type == 'evil' and agent.type == "evil"):
+                                self.creature_smell[grid_loc_y,grid_loc_x] += (0.5/(fast_dist(x_new,y_new,agent.x,agent.y)+1))*255
 
                     for plant in plants:
                         self.food_smell[grid_loc_y,grid_loc_x] += (0.5/(fast_dist(x_new,y_new,plant.x,plant.y)+1))*(plant.energy/plant.max_energy)*255
@@ -491,7 +471,7 @@ class EvilAgent(Agent):
         self.img.fill(pg.Color("#AAAAFF"),special_flags=pg.BLEND_MIN)
         self.type = 'evil'
         self.good_choice_chance = DEFAULT_EVIL_INTELLIGENCE
-
+        self.sense.type = 'evil'
     def choose_movement(self):
 
         move = random.randint(0,8)
