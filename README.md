@@ -37,18 +37,18 @@ Environmental Factors that must be considered:
 ### Agent Abilities
 There are two types of agents; a herbivore class and a carnivore class. Both creatures will, by default, follow their nose to try to find food in the same way that smart_mouse did in assignment 1. They are not as smart as smart_mouse, and this intelligence is measured by the DEFAULT_INTELLIGENCE and DEFAULT_EVIL_INTELLIGENCE stats. Below is a description of each creature type.
 
-**Herbivore** ![Herbivore](src\art_assets\agent_faces\agent_faces_neutral.png)
+**Herbivore** ![Herbivore](src/art_assets/agent_faces/agent_faces_neutral.png)
 
 These creatures include the player, and are peaceful. All they do is wander around and try to find food.
 
 To differentiate your player from the generic creatures, you have a cool pair of sunglasses.
-![Sunglasses](src\art_assets\agent_faces\agent_faces_main.png)
+![Sunglasses](src/art_assets/agent_faces/agent_faces_main.png)
 
-**Carnivore (Evil)** ![Carnivore](src\art_assets\agent_faces\agent_faces_evil.png)
+**Carnivore (Evil)** ![Carnivore](src/art_assets/agent_faces/agent_faces_evil.png)
 
 While not actually evil, they're effectively evil towards the player, as they will sniff you out and hunt you down. Or any of the other herbivores. Which ever it finds first.
 
-**Plants** ![Plant](src\art_assets\plant_growth\plant5.png)
+**Plants** ![Plant](src/art_assets/plant_growth/plant5.png)
 
 More of an object than an agent. Will grow over time, and be both more fragrant and more energizing to eat. Can be eaten in pieces or all at once using the EAT_PLANT_INSTANT boolean.
 
@@ -66,7 +66,7 @@ Alongside sight, they also have a 3x3 smell matrix that gives them information a
 
 ## Your Tasks
 1)	Each turn, give your agent a movement number between 0 and 8, corresponding to the following table (Note that a value of 4 will make the agent stand still for the turn):
-![Directions](readme_imgs\directions.png)
+![Directions](readme_imgs/directions.png)
 
  2) You will be given a set of scenarios that can be created by modifying global variables. You're task will be to accomplish the given task in that scenario.
 
