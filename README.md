@@ -68,6 +68,8 @@ Alongside sight, they also have a 3x3 smell matrix that gives them information a
 1)	Each turn, give your agent a movement number between 0 and 8, corresponding to the following table (Note that a value of 4 will make the agent stand still for the turn):
 ![Directions](readme_imgs/directions.png)
 
+    * All you have to do is find the player_move line in simulation_runner.py, and change it from None to the move you want to make that turn.
+
  2) You will be given a set of scenarios that can be created by modifying global variables. You're task will be to accomplish the given task in that scenario.
 
 ### Scenarios

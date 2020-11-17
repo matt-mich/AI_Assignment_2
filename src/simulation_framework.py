@@ -704,12 +704,13 @@ class GameManager:
         for plant in self.plants:
             plant.tick()
 
-    def agentTick(self,agent):
+    def agentTick(self,agent,move=None):
         if agent.alive == 0:
             return
         agent.tick()
-        move = agent.choose_movement()
-    
+        if move == None:
+            move = agent.choose_movement()
+
         offset_x, offset_y, difficulty = dir2offset(move)
         new_x = agent.x + offset_x
         new_y = agent.y + offset_y
@@ -751,7 +752,7 @@ class GameManager:
         agent.sense.update(agent.x,agent.y,self.grid,self.agents,self.plants)
 
 
-    def logicTick(self):
+    def logicTick(self,player_move=None):
         random.shuffle(self.plants)
         random.shuffle(self.agents)
         self.plantTick()
@@ -761,7 +762,7 @@ class GameManager:
                 self.agentTick(agent)
         for agent in self.agents:
             if agent.type == "main":
-                self.agentTick(agent)
+                self.agentTick(agent,player_move)
         
     def addPlant(self):
         x, y = self.grid.randEmptySpace()

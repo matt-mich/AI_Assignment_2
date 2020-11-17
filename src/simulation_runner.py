@@ -38,7 +38,12 @@ def GameLoop(game_manager):
                 run_game_loop = False
         if not paused:
             for i in range(SKIP_FRAMES + 1):
-                game_manager.logicTick()
+                # CALL YOUR CODE HERE!
+                player_move = None
+                # CALL YOUR CODE HERE!
+
+                game_manager.logicTick(player_move)
+
             game_window.fill(BACKGROUND_COLOR)
             game_manager.draw(game_window)
             pg.display.flip()        
