@@ -74,7 +74,7 @@ class GameObject:
         self.loadImg(self.img_path)
         self.energy = 0    
         self.max_energy = 100
-    
+
     def consume(self,energy):
         self.energy += energy
         if self.energy > self.max_energy:
@@ -174,6 +174,13 @@ class Agent(GameObject):
         self.sense.id = self.id
         self.good_choice_chance = DEFAULT_INTELLIGENCE
         self.score = 0
+
+    def consume(self,energy):
+        self.energy += energy
+        if self.energy > self.max_energy:
+            self.energy = self.max_energy
+        # EC Idea: What about other ways to calculate score?
+        self.score += energy / (self.health/MAX_HEALTH) / (self.energy / self.max_energy)
 
     def tick(self):
         if self.energy <= 0 or self.health <= 0:
