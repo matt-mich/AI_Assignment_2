@@ -70,15 +70,17 @@ Alongside sight, they also have a 3x3 smell matrix that gives them information a
 
     * All you have to do is find the player_move line in simulation_runner.py, and change it from None to the move you want to make that turn.
 
- 2) You will be given a set of scenarios that can be created by modifying global variables. You're task will be to accomplish the given task in that scenario.
+ 2) You will be given a set of three scenarios that can be created by modifying global variables. You're task will be to accomplish the given task in that scenario.
 
 ### Scenarios
  
- (IN PROGRESS: CHECK BACK SOON)
+**(IN PROGRESS: CHECK BACK SOON)**
  
 ### Questions
 Please answer these questions to the best of your abilities. They won't be graded on correctness, but more regarding the amount thought you put into them. It's not difficult to get full points on each question.
 
+**(IN PROGRESS: CHECK BACK SOON)**
+ 
 ## Extra Credit
 
 Extra credit is awarded for creating, implementing, and solving a unique scenario. 
