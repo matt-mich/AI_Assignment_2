@@ -58,9 +58,9 @@ SMELL_DIST = 10
 
 SQUARE_SIZE = int(WINDOW_WIDTH/GAME_GRID_WIDTH*0.8)
 
-NUM_AGENTS = 10
+NUM_AGENTS = 5
 
-NUM_EVIL = 2
+NUM_EVIL = 1
 
 # Defines how smart the non-student agents are.
 # A value between 0 and 1, where a lower value means the 
@@ -72,4 +72,4 @@ DEFAULT_EVIL_INTELLIGENCE = 0.5
 
 
 # Indicates whether or not it takes time to consume a plant
-EAT_PLANT_INSTANT = False
+EAT_PLANT_INSTANT = True

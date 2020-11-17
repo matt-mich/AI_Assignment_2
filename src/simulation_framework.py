@@ -180,7 +180,15 @@ class Agent(GameObject):
         if self.energy > self.max_energy:
             self.energy = self.max_energy
         # EC Idea: What about other ways to calculate score?
-        self.score += energy / (self.health/MAX_HEALTH) / (self.energy / self.max_energy)
+
+        health_score = self.health/MAX_HEALTH
+        if health_score < 0.001:
+            health_score = 0.001
+        energy_score = self.energy/MAX_ENERGY
+        if energy_score < 0.001:
+            energy_score = 0.001
+
+        self.score += energy * health_score * energy_score
 
     def tick(self):
         if self.energy <= 0 or self.health <= 0:
@@ -479,6 +487,8 @@ class EvilAgent(Agent):
         self.type = 'evil'
         self.good_choice_chance = DEFAULT_EVIL_INTELLIGENCE
         self.sense.type = 'evil'
+        self.max_energy = MAX_ENERGY * 2
+        self.energy = self.max_energy
     def choose_movement(self):
 
         move = random.randint(0,8)
@@ -736,12 +746,19 @@ class GameManager:
         if agent.type != 'evil':
             for plant in self.plants:
                 if agent.x == plant.x and agent.y == plant.y:
-                        agent.consume(10)
-                        if plant.energy > 10:
-                            plant.deplete(10)
-                        else:
+                        if EAT_PLANT_INSTANT:
+                            agent.consume(plant.energy)
                             self.plants.remove(plant)
                             self.addPlant()
+
+                        else:
+                            agent.consume(10)
+                            if plant.energy > 10:
+                                plant.deplete(10)
+                            else:
+                                self.plants.remove(plant)
+                                self.addPlant()
+
         else:
             for target_agent in self.agents:
                 if target_agent.type != 'evil':
@@ -750,10 +767,11 @@ class GameManager:
                             target_agent.take_damage(10)
                             
                     else:
-                        agent.consume(5)
-                        if target_agent.energy > 5:
-                            target_agent.deplete(5)
+                        if target_agent.energy > 10:
+                            agent.consume(10)
+                            target_agent.deplete(10)
                         else:
+                            agent.consume(target_agent.energy)
                             self.agents.remove(target_agent)
 
         agent.sense.update(agent.x,agent.y,self.grid,self.agents,self.plants)
