@@ -72,10 +72,43 @@ Alongside sight, they also have a 3x3 smell matrix that gives them information a
 
  2) You will be given a set of three scenarios that can be created by modifying global variables. You're task will be to accomplish the given task in that scenario.
 
-### Scenarios
+## Scenarios
  
 **(IN PROGRESS: CHECK BACK SOON)**
- 
+These scenarios will have more details soon to help you out and give you hints as to how to solve them.
+Be sure to update your code frequently.
+
+### Scenario 1: Terrain Navigation
+**Setup**
+
+NUM_AGENTS = 1
+
+NUM_EVIL = 0
+
+**Details**
+This is very similar to your tasks for Assignment 1. Your job is to give the player character the ability to navigate the new terrain.
+
+
+### Scenario 2: Aggression Avoidance
+**Setup**
+
+NUM_AGENTS = 1
+
+NUM_EVIL = 1
+
+**Details**
+In addition to Scenario 1's task, the player must now deal with an aggressive agent.
+
+### Scenario 3: Competition
+**Setup**
+
+NUM_AGENTS = 5
+
+NUM_EVIL = 1
+
+**Details**
+In addition to Scenario 2's task, the player now has to compete for food with other herbivores. The biggest challenge here is that the player cannot differentiate the scent of herbivores from carnivores, but they do have the ability to tell the difference in their sight.
+
 ### Questions
 Please answer these questions to the best of your abilities. They won't be graded on correctness, but more regarding the amount thought you put into them. It's not difficult to get full points on each question.
 
