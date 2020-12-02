@@ -10,7 +10,7 @@ Due to some concerns of students regarding the number of possible states that yo
 ## Tips
 1) You don't have to use RL exclusively to solve this problem. The idea is for you to learn how to integrate reinforcement learning into your coding toolkit. Feel free to use whatever information is available to you in the Agent data object when deciding the best strategy. This means you can be as creative as you want when it comes to the reward function, or even when to use one of multiple versions of your model.
 
-2) The data does not have to be taken as is. The sight matrices can be converted from a set of binary states to a much smaller set of floating point states. Think about how you can blur the matrix so it can be converted from a 5x5 to a 3x3 with minimal data loss (or none). That converts the states from 2<sup>24</sup> to 2<sup>8</sup>, or 16,777,216 to 256.
+2) The data does not have to be taken as is. The sight matrices can be converted from a set of binary states to a much smaller set of floating point states. Think about how you can blur the matrix so it can be converted from a 5x5 to a 3x3 with minimal data loss (or none).
 
 3) I'll soon be creating a new branch of code that I can add modifications to. I want to make sure no one gets their work overwritten when updating, so I have to keep major changes out of the Master branch.
 
