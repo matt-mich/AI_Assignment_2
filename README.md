@@ -3,7 +3,24 @@ Assignment 2 source code for AI with Reinforcement Learning Course
 
 
 ## READ THIS FIRST
-I'm still fixing some aspects of the code. It'll be finished ASAP, but please let me know if there is any issues. Please open an issue in this GitHub to get the issue fixed quickly. 
+**UPDATE**
+
+Due to some concerns of students regarding the number of possible states that you'd have to deal with if all senses are taken into account simultaneously, I've added a few tips below. Additionally, you are now allowed to use any RL methods mentioned in this class.
+
+## Tips
+1) You don't have to use RL exclusively to solve this problem. The idea is for you to learn how to integrate reinforcement learning into your coding toolkit. Feel free to use whatever information is available to you in the Agent data object when deciding the best strategy. This means you can be as creative as you want when it comes to the reward function, or even when to use one of multiple versions of your model.
+
+2) The data does not have to be taken as is. The sight matrices can be converted from a set of binary states to a much smaller set of floating point states. Think about how you can blur the matrix so it can be converted from a 5x5 to a 3x3 with minimal data loss (or none). That converts the states from 2<sup>24</sup> to 2<sup>8</sup>, or 16,777,216 to 256.
+
+3) I'll soon be creating a new branch of code that I can add modifications to. I want to make sure no one gets their work overwritten when updating, so I have to keep major changes out of the Master branch.
+
+4) If you're concerned about having your changes altered by a git pull, make sure to use git stash. Knowing how to use Git will be invaluable to you in the future, so it's very worthwhile to learn it.
+
+5) (BUGFIX: I'd push this over git, but I don't want to mess with anyone's code.) If your code isn't working, try replacing line 547 with this (It will look similar):
+
+img = Image.fromarray(self.elevation_map, mode = "L").filter(ImageFilter.GaussianBlur(1.2))
+
+
 
 ## Methods
 You are to use one of the tabular methods that have been taught in class (But these are recomended):
